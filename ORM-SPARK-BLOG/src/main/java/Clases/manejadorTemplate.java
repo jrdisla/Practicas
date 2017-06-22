@@ -1,5 +1,4 @@
 package Clases;
-import Clases.*;
 import Handlers.*;
 import freemarker.template.Configuration;
 import spark.ModelAndView;
@@ -14,7 +13,7 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 
 /**
- * Created by ${jrdis} on ${16/6/2017}.
+ * Created by jrdis on 16/6/2017.
  */
 public class manejadorTemplate {
     int page =1;
@@ -31,9 +30,9 @@ public class manejadorTemplate {
         startPage(FreeMarkerengine);
         login(FreeMarkerengine);
         home(FreeMarkerengine);
-        add(FreeMarkerengine);
+        add();
         addArticulo(FreeMarkerengine);
-        addArticuloAdded(FreeMarkerengine);
+        addArticuloAdded();
         pagination(FreeMarkerengine);
         List_One_article(FreeMarkerengine);
         validateUser(FreeMarkerengine);
@@ -52,11 +51,7 @@ public class manejadorTemplate {
 
     }
 
-    public void home(FreeMarkerEngine engine) {
-        /***
-         * http://localhost:4567/home/
-         * @param engine
-         */
+    private void home(FreeMarkerEngine engine) {
         before("/home/",(request, response) -> {
             User usuario_ = request.session().attribute("username");
             UserHandler userHandler = UserHandler.getInstance();
@@ -80,11 +75,8 @@ public class manejadorTemplate {
         }, engine);
     }
 
-    public void startPage(FreeMarkerEngine engine) {
-        /***
-         * http://localhost:4567/startPage/
-         * @param engine
-         */
+    private void startPage(FreeMarkerEngine engine) {
+
         get("/startPage/", (request, response) -> {
 
 
@@ -96,7 +88,7 @@ public class manejadorTemplate {
         }, engine);
     }
 
-    public void login(FreeMarkerEngine engine) {
+    private void login(FreeMarkerEngine engine) {
         post("/login/", (request, response) -> {
             //
 
@@ -129,12 +121,11 @@ public class manejadorTemplate {
         }, engine);
     }
 
-    public void add(FreeMarkerEngine engine) {
+    private void add() {
 
 
         post("/signup/", (request, response) -> {
-            Map<String, Object> attributes = new HashMap<>();
-            //get fields:
+
             String username = request.queryParams("username"),
                     fullname = request.queryParams("fullname"),
                     password = request.queryParams("password"),
@@ -144,20 +135,18 @@ public class manejadorTemplate {
 
             UserHandler userHandler = UserHandler.getInstance();
 
-            attributes.put("username", username);
-            attributes.put("fullname", fullname);
 
             if (username.length() < 6) {
-                return ("El nombre de usuario ha de tener almenos seis (6) caracteres.");
+                return ("El nombre de usuario ha de tener por lo menos seis 6 caracteres.");
             }
             if (fullname == null || fullname.equals("")) {
-                return ("No es posible dejar el campo de nombre vacio.");
+                return ("Debe llenar este campo.");
             }
             if (!password.equals(password2)) {
-                return ("Las contrasenas insertadas no son iguales. Revise de nuevo.");
+                return ("Las contrasenas insertadas no son iguales.");
             }
-            if (password.length() < 6) {
-                return ("La contrasena debe contener almenos seis (6) caracteres.");
+            if (password.length() < 8) {
+                return ("La contrasena debe contener almenos seis (8) caracteres.");
             }
 
             User user = new User();
@@ -176,12 +165,9 @@ public class manejadorTemplate {
         });
     }
 
-    public void addArticulo (FreeMarkerEngine engine)
+    private void addArticulo (FreeMarkerEngine engine)
     {
-        /***
-         * http://localhost:4567/startPage/
-         * @param engine
-         */
+
         get("/addArti/", (request, response) -> {
 
 
@@ -193,7 +179,7 @@ public class manejadorTemplate {
             return new ModelAndView(attributes, "addArticulo.ftl");
         }, engine);
     }
-    public void addArticuloAdded(FreeMarkerEngine engine) {
+    private void addArticuloAdded() {
 
         post("/addArti/added/", (request, response) -> {
 
@@ -214,8 +200,9 @@ public class manejadorTemplate {
 
             for (String tagTitle : articleTags) {
 
-                Tag existingTag = tagHandler.getTags(tagTitle);
-                Tag tag = null;
+                Tag existingTag;
+                existingTag = tagHandler.getTags(tagTitle);
+                Tag tag;
                 if(existingTag != null) {
 
                     tag = existingTag;
@@ -239,7 +226,7 @@ public class manejadorTemplate {
         });
     }
 
-    public void pagination (FreeMarkerEngine engine)
+    private void pagination (FreeMarkerEngine engine)
     {
         before("/home/:id/",(request, response) -> {
             User usuario_ = request.session().attribute("username");
@@ -266,7 +253,7 @@ public class manejadorTemplate {
         }, engine);
     }
 
-    public void List_One_article (FreeMarkerEngine engine)
+    private void List_One_article (FreeMarkerEngine engine)
     {
         before("/article/:id/",(request, response) -> {
             User usuario_ = request.session().attribute("username");
@@ -283,13 +270,8 @@ public class manejadorTemplate {
             id_actual_article = id;
             ArticleHandler articleHandler = ArticleHandler.getInstance();
             Article article = articleHandler.findObjectWithId(id);
-            User usuario_ = request.session().attribute("username");
-            ArticleLikesHandler articlePreferenceHandler = ArticleLikesHandler.getInstance();
 
-            List<ArticleLikes> articlePreferences = articlePreferenceHandler.getAllObjects();
-            // Article article = articleHandler.findObjectWithId(id)
-
-            CommentHandler commentHandler = CommentHandler.getInstance();
+             CommentHandler commentHandler = CommentHandler.getInstance();
 
 
             User user = request.session().attribute("username");
@@ -347,7 +329,7 @@ public class manejadorTemplate {
 
         }, engine);
     }
-    public void validateUser (FreeMarkerEngine engine)
+    private void validateUser (FreeMarkerEngine engine)
     {
         before("/articulo/valida/",(request, response) -> {
             User usuario_ = request.session().attribute("username");
@@ -389,7 +371,7 @@ public class manejadorTemplate {
             return new ModelAndView(attributes, "only_one_article.ftl");
         }, engine);
     }
-    public void callUserAdd (FreeMarkerEngine engine)
+    private void callUserAdd (FreeMarkerEngine engine)
     {
         before("/addUser/",(request, response) -> {
             User usuario_ = request.session().attribute("username");
@@ -408,7 +390,7 @@ public class manejadorTemplate {
             return new ModelAndView(attributes, "admin_add_user.ftl");
         }, engine);
     }
-    public void addedUser (FreeMarkerEngine engine)
+    private void addedUser (FreeMarkerEngine engine)
     {
         before("/addUser/added/",(request, response) -> {
             User usuario_ = request.session().attribute("username");
@@ -449,7 +431,7 @@ public class manejadorTemplate {
         }, engine);
     }
 
-    public void listArtyby (FreeMarkerEngine engine)
+    private void listArtyby (FreeMarkerEngine engine)
     {
         get("/listArtiBy/", (request, response) -> {
             User user_arti = request.session().attribute("username");
@@ -478,7 +460,7 @@ public class manejadorTemplate {
         }, engine);
     }
 
-    public void deleteArticulo(FreeMarkerEngine engine) {
+    private void deleteArticulo(FreeMarkerEngine engine) {
         get("/deleteArticulo/:id/", (request, response) -> {
             int ID = Integer.parseInt(request.params(":id"));
 
@@ -488,7 +470,7 @@ public class manejadorTemplate {
         });
     }
 
-    public void updateArtit(FreeMarkerEngine FreeMarkerengine) {
+    private void updateArtit(FreeMarkerEngine FreeMarkerengine) {
         get("/actArticulo/:id/", (request, response) -> {
             Article articulo = ArticleHandler.getInstance().findObjectWithId(Integer.parseInt(request.params("id")));
             Map<String, Object> attributes = new HashMap<>();
@@ -501,7 +483,7 @@ public class manejadorTemplate {
         }, FreeMarkerengine);
     }
 
-    public void IndividualShow(FreeMarkerEngine FreeMarkerengine) {
+    private void IndividualShow(FreeMarkerEngine FreeMarkerengine) {
         get("/individualInfo/:id/", (request, response) -> {
             ArticleHandler articleHandler =ArticleHandler.getInstance();
             Article articulo = articleHandler.findObjectWithId(Integer.parseInt(request.params("id")));
@@ -555,7 +537,7 @@ public class manejadorTemplate {
         }, FreeMarkerengine);
     }
 
-    public void deleteComment(FreeMarkerEngine engine) {
+    private void deleteComment(FreeMarkerEngine engine) {
         get("/deleteComment/:id/", (request, response) -> {
             int ID = Integer.parseInt(request.params(":id"));
             System.out.println("LLEGANDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOo");
@@ -565,7 +547,7 @@ public class manejadorTemplate {
         });
     }
 
-    public void showTags (FreeMarkerEngine engine)
+    private void showTags (FreeMarkerEngine engine)
     {
         get("/listTags/", (request, response) -> {
 
@@ -580,7 +562,7 @@ public class manejadorTemplate {
 
     }
 
-    public void listArticleByTag (FreeMarkerEngine engine)
+    private void listArticleByTag (FreeMarkerEngine engine)
     {
         get("/seeArticles/:id/", (request, response) -> {
             int id_tag = Integer.parseInt(request.params(":id"));
@@ -595,7 +577,7 @@ public class manejadorTemplate {
         }, engine);
     }
 
-    public void invalidadSesion (FreeMarkerEngine engine)
+    private void invalidadSesion (FreeMarkerEngine engine)
     {
         get("/invalidarSesion/", (request, response) -> {
             Session session = request.session(true);
@@ -608,7 +590,7 @@ public class manejadorTemplate {
     }
 
 
-    public void preferesDislike (FreeMarkerEngine engine)
+    private void preferesDislike (FreeMarkerEngine engine)
     {
         get("/preferences/likes/:id", (request, response) -> {
 
@@ -675,7 +657,7 @@ public class manejadorTemplate {
         }, engine);
     }
 
-    public void preferesDislikeComment (FreeMarkerEngine engine)
+    private void preferesDislikeComment (FreeMarkerEngine engine)
     {
         get("/preferencesA/:id/:comment_id/", (request, response) -> {
             int id = Integer.parseInt(request.params(":id"));
@@ -741,7 +723,7 @@ public class manejadorTemplate {
     }
 
     //------------------------ FUNTIONS TO GENERATE HTML CODE --------------------------------------
-    public String autoMaticHtml_List_Arti (List<Article> articles)
+    private String autoMaticHtml_List_Arti (List<Article> articles)
     {
         String htmlCode = "";
         for (Article item: articles) {
@@ -758,7 +740,7 @@ public class manejadorTemplate {
 
         return htmlCode;
     }
-    public String autoMaticHtml_One_Arti (Article item)
+    private String autoMaticHtml_One_Arti (Article item)
     {
         String htmlCode = "";
 
@@ -774,7 +756,7 @@ public class manejadorTemplate {
 
         return htmlCode;
     }
-    public String automaticCommentHtmlCode (List<Comment> item, int id_arti)
+    private String automaticCommentHtmlCode (List<Comment> item, int id_arti)
     {
         id_local_article = id_arti;
         String htmlCode = "";
