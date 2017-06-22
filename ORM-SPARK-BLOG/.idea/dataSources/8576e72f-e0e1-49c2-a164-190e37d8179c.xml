@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="test11">
+  <database-model serializer="dbm" rdbms="H2" format-version="4.2">
+    <root id="1"/>
+    <database id="2" parent="1" name="TEST11">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </database>
+    <schema id="3" parent="2" name="INFORMATION_SCHEMA"/>
+    <schema id="4" parent="2" name="PUBLIC">
+      <Visible>1</Visible>
+    </schema>
+    <table id="5" parent="4" name="ARTICLE"/>
+    <table id="6" parent="4" name="ARTICLELIKES"/>
+    <table id="7" parent="4" name="ARTICLE_TAGS"/>
+    <table id="8" parent="4" name="COMMENTLIKES"/>
+    <table id="9" parent="4" name="COMMENTS"/>
+    <table id="10" parent="4" name="TAGS"/>
+    <table id="11" parent="4" name="USERS"/>
+    <column id="12" parent="5" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="13" parent="5" name="BODY">
+      <Position>2</Position>
+      <DataType>VARCHAR(1000)|12</DataType>
+    </column>
+    <column id="14" parent="5" name="DATE">
+      <Position>3</Position>
+      <DataType>TIMESTAMP(23,10)|93</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="5" name="TITLE">
+      <Position>4</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="16" parent="5" name="AUTHOR">
+      <Position>5</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="17" parent="5" name="UK_571GX7OQO5XPMGOCEGAIDLCU9_INDEX_F">
+      <ColNames>TITLE</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="18" parent="5" name="CONSTRAINT_F">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="19" parent="5" name="FKJTXHXJV2GON1H73TJ8O98LXE0">
+      <ColNames>AUTHOR</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>USERS</RefTableName>
+      <RefKeyName>CONSTRAINT_4</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="20" parent="6" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="6" name="STATUS">
+      <Position>2</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="22" parent="6" name="ARTICLE">
+      <Position>3</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="6" name="USER">
+      <Position>4</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="24" parent="6" name="CONSTRAINT_73">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="25" parent="6" name="FK3Y3085W0SYX5J8XM2EI1IXXIO">
+      <ColNames>ARTICLE</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>ARTICLE</RefTableName>
+      <RefKeyName>CONSTRAINT_F</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="26" parent="6" name="FKIM36HOCUVE0DMHSBNDHDQQ1QW">
+      <ColNames>USER</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>USERS</RefTableName>
+      <RefKeyName>CONSTRAINT_4</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="27" parent="7" name="ARTICLES_ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="7" name="TAGS_ID">
+      <Position>2</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="29" parent="7" name="CONSTRAINT_7">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ARTICLES_ID
+TAGS_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="30" parent="7" name="FKHD7FYHYHF5BPBGW8RRI8J3GRV">
+      <ColNames>ARTICLES_ID</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>ARTICLE</RefTableName>
+      <RefKeyName>CONSTRAINT_F</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="31" parent="7" name="FKC5K7JRS43JNBVOAW94I5DKXT5">
+      <ColNames>TAGS_ID</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>TAGS</RefTableName>
+      <RefKeyName>CONSTRAINT_2</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="32" parent="8" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="8" name="STATUS">
+      <Position>2</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="8" name="COMMENT">
+      <Position>3</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="8" name="USER">
+      <Position>4</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="36" parent="8" name="CONSTRAINT_B">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="37" parent="8" name="FKQ4OQJ3CSL1E35O7B4YU1C7EU6">
+      <ColNames>COMMENT</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>COMMENTS</RefTableName>
+      <RefKeyName>CONSTRAINT_A</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="38" parent="8" name="FKGQ2V6BNF7HCRF67PBQBK0788O">
+      <ColNames>USER</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>USERS</RefTableName>
+      <RefKeyName>CONSTRAINT_4</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="39" parent="9" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="9" name="BODY">
+      <Position>2</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="9" name="ARTICLE">
+      <Position>3</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="9" name="AUTHOR">
+      <Position>4</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="43" parent="9" name="CONSTRAINT_A">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="44" parent="9" name="FKBA7GSFJ26C34VQD3YELKHCWJD">
+      <ColNames>ARTICLE</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>ARTICLE</RefTableName>
+      <RefKeyName>CONSTRAINT_F</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="45" parent="9" name="FKP6ILF8ROSUWL497KHJOFOVGGK">
+      <ColNames>AUTHOR</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>USERS</RefTableName>
+      <RefKeyName>CONSTRAINT_4</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="46" parent="10" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="10" name="DESC">
+      <Position>2</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="48" parent="10" name="UK_IK459HQ63L42YT87XW2GA983C_INDEX_2">
+      <ColNames>DESC</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="49" parent="10" name="CONSTRAINT_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="50" parent="11" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="11" name="ISADMINISTRATOR">
+      <Position>2</Position>
+      <DataType>BOOLEAN(1)|16</DataType>
+    </column>
+    <column id="52" parent="11" name="ISAUTHOR">
+      <Position>3</Position>
+      <DataType>BOOLEAN(1)|16</DataType>
+    </column>
+    <column id="53" parent="11" name="NAME">
+      <Position>4</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="54" parent="11" name="PASSWORD">
+      <Position>5</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="11" name="USERNAME">
+      <Position>6</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="56" parent="11" name="UK_R43AF9AP4EDM43MMTQ01ODDJ6_INDEX_4">
+      <ColNames>USERNAME</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="57" parent="11" name="CONSTRAINT_4">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
