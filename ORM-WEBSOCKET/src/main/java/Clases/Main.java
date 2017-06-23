@@ -20,13 +20,13 @@ public class Main {
         userPrefs.putBoolean("first_run", true);
         Boolean isFirstRun = userPrefs.getBoolean("first_run", true);
 
-     //   if (isFirstRun) {
+      if (isFirstRun) {
             System.out.println("running for the first time");
-      //      User firstUser = new User("admin", "admin", "admin", true, true);
-      //      UserHandler userHandler = UserHandler.getInstance();
-      //      userHandler.insertIntoDatabase(firstUser);
-      //      userPrefs.putBoolean("first_run", false);
-     //   }
+          User firstUser = new User("admin", "admin", "admin", true, true);
+            UserHandler userHandler = UserHandler.getInstance();
+            userHandler.insertIntoDatabase(firstUser);
+            userPrefs.putBoolean("first_run", false);
+        }
         Spark.staticFileLocation("/public");
        manejadorTemplate.getInstance().startApp();
 
