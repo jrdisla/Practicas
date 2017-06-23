@@ -45,6 +45,7 @@
                 <li><a href="/listArtiBy/">Modificate and Delete</a></li>
                 <li class="active"><a href="/listTags/"> Articles By Tags</a></li>
                 <li><a href="/invalidarSesion/"> Logout</a></li>
+                <li> <a href="/chat/">CHAT</a></li>
             </ul>
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group input-group">

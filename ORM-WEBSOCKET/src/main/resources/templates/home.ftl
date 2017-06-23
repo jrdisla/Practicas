@@ -57,6 +57,9 @@
                 <li><a href="/listArtiBy/">Modificate and Delete</a></li>
                 <li><a href="/listTags/"> Articles By Tags</a></li>
                 <li><a href="/invalidarSesion/"> Logout</a></li>
+            <#if user.username == "admin">
+                <li> <a href="/chat/">CHAT</a></li>
+            </#if>
             </ul>
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group input-group">
@@ -89,6 +92,58 @@
 
 
 
+</div>
+<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+    <ul class="nav navbar-nav">
+        <li class="hidden">
+            <a href="#page-top"></a>
+        </li>
+        <li>
+
+            <script>
+                $(document).ready(function(){
+                    $("#flip").click(function(){
+                        $("#panel").slideDown("slow");
+                    });
+                });
+            </script>
+            <script>
+                $(document).ready(function(){
+                    $("#flip").dblclick(function(){
+                        $("#panel").hide();
+                    });
+                });
+            </script>
+
+            <style>
+                #panel, #flip {
+                    padding: 5px;
+                    text-align: center;
+                    border: solid 1px #c3c3c3;
+                }
+
+                #panel {
+                    padding: 5px;
+                    display: none;
+                }
+            </style>
+
+            </head>
+            <body>
+
+            <div id="flip">Login</div>
+            <div id="panel">
+                <form action="/chata/" method="post">
+                    <div class="input-group">
+                        Your Name: <input name="name" type="text" class="form-control" placeholder="Nombre " aria-describedby="basic-addon1">
+                    </div>
+                    <p></p>
+                    <button type="submit" class="btn btn-primary">SUBMIT</button>
+                </form>
+            </div>
+
+        </li>
+    </ul>
 </div>
 <hr>
 <nav aria-label="Page navigation">

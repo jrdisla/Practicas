@@ -24,4 +24,7 @@ dependencies {
     compile group: 'com.j256.ormlite', name: 'ormlite-jdbc', version: '3.4'
     compile 'com.h2database:h2:1.4.191'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+    // https://mvnrepository.com/artifact/org.json/json
+    compile group: 'org.json', name: 'json', version: '20170516'
+
 }

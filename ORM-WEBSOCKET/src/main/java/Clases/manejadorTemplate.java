@@ -1,6 +1,7 @@
 package Clases;
 import Handlers.*;
 import freemarker.template.Configuration;
+import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import spark.ModelAndView;
 import spark.Session;
 import spark.Spark;
@@ -20,9 +21,11 @@ public class manejadorTemplate {
     int id_actual_article =0;
     int id_local_article =0;
     int comment_id_global = 0;
-
+    String name = "";
     public void startApp() {
         Spark.staticFileLocation("/public");
+        webSocket("/mensajeServidor", ChatWebSocketHandler.class);
+        init();
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_26);
         configuration.setClassForTemplateLoading(manejadorTemplate.class, "/templates");
         FreeMarkerEngine FreeMarkerengine = new FreeMarkerEngine(configuration);
@@ -48,7 +51,37 @@ public class manejadorTemplate {
         invalidadSesion(FreeMarkerengine);
         preferesDislike(FreeMarkerengine);
         preferesDislikeComment(FreeMarkerengine);
+        enviarMensaje(FreeMarkerengine);
+        chat(FreeMarkerengine);
 
+
+    }
+
+    public void enviarMensaje (FreeMarkerEngine engine)
+    {
+        get("/enviarMensaje/:mensaje/",(request, response) ->{
+            String mensaje = request.params(":mensaje");
+            Chat.enviarMensajeAAdmin(mensaje);
+            return "Enviando mensaje: "+mensaje;
+        });
+    }
+    public void chat (FreeMarkerEngine engine)
+    {
+        post("/chata/", (request, response) -> {
+            name = request.queryParams("name");
+            response.redirect("/chat/");
+            return null;
+        }, engine);
+
+        get("/chat/", (request, response) -> {
+
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("titulo", "Chat");
+            attributes.put("name",name);
+            User user = request.session().attribute("username");
+            attributes.put("user",user);
+            return new ModelAndView(attributes, "Chat.html");
+        }, engine);
     }
 
     private void home(FreeMarkerEngine engine) {
@@ -77,7 +110,9 @@ public class manejadorTemplate {
 
     private void startPage(FreeMarkerEngine engine) {
 
+
         get("/startPage/", (request, response) -> {
+
 
 
             Map<String, Object> attributes = new HashMap<>();

@@ -20,6 +20,7 @@
     <orderEntry type="library" name="Gradle: com.j256.ormlite:ormlite-core:5.0" level="project" />
     <orderEntry type="library" name="Gradle: com.j256.ormlite:ormlite-jdbc:3.4" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:slf4j-simple:1.7.21" level="project" />
+    <orderEntry type="library" name="Gradle: org.json:json:20170516" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-server:9.4.4.v20170414" level="project" />
     <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-webapp:9.4.4.v20170414" level="project" />

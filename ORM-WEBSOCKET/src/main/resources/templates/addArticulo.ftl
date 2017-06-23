@@ -17,6 +17,14 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Spark Blog ORM</title>
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
 
     <title>${titulo}</title>
@@ -37,7 +45,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/home/">Home</a></li>
+                <li><a href="/home/">Home</a></li>
                 <li class="active"><a href="/addArti/">Add Article</a></li>
             <#if user.username == "admin">
                 <li><a href="/addUser/">Add User</a></li>
@@ -45,6 +53,7 @@
                 <li><a href="/listArtiBy/">Modificate and Delete</a></li>
                 <li><a href="/listTags/"> Articles By Tags</a></li>
                 <li><a href="/invalidarSesion/"> Logout</a></li>
+                <li> <a href="/chat/">CHAT</a></li>
 
 
             </ul>

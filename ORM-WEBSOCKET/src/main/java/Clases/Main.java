@@ -1,9 +1,13 @@
 package Clases;
 
+import Handlers.ChatWebSocketHandler;
 import Handlers.UserHandler;
 import spark.Spark;
 
 import java.util.prefs.Preferences;
+
+import static spark.Spark.init;
+import static spark.Spark.webSocket;
 
 
 /**
@@ -16,15 +20,16 @@ public class Main {
         userPrefs.putBoolean("first_run", true);
         Boolean isFirstRun = userPrefs.getBoolean("first_run", true);
 
-        if (isFirstRun) {
-                 System.out.println("running for the first time");
-                  User firstUser = new User("admin", "admin", "admin", true, true);
-                  UserHandler userHandler = UserHandler.getInstance();
-                  userHandler.insertIntoDatabase(firstUser);
-            userPrefs.putBoolean("first_run", false);
-        }
-
+     //   if (isFirstRun) {
+            System.out.println("running for the first time");
+      //      User firstUser = new User("admin", "admin", "admin", true, true);
+      //      UserHandler userHandler = UserHandler.getInstance();
+      //      userHandler.insertIntoDatabase(firstUser);
+      //      userPrefs.putBoolean("first_run", false);
+     //   }
         Spark.staticFileLocation("/public");
         new manejadorTemplate().startApp();
+
+        //  }
     }
 }
