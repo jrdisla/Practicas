@@ -21,11 +21,26 @@ public class manejadorTemplate {
     int id_actual_article =0;
     int id_local_article =0;
     int comment_id_global = 0;
-    String name = "";
+    public String name = "";
+
+
+    private static manejadorTemplate instance = null;
+    protected manejadorTemplate() {}
+
+    public static manejadorTemplate getInstance() {
+        if (instance == null) {
+            instance = new manejadorTemplate();
+        }
+        return instance;
+    }
+
+
     public void startApp() {
+
         Spark.staticFileLocation("/public");
         webSocket("/mensajeServidor", ChatWebSocketHandler.class);
         init();
+
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_26);
         configuration.setClassForTemplateLoading(manejadorTemplate.class, "/templates");
         FreeMarkerEngine FreeMarkerengine = new FreeMarkerEngine(configuration);

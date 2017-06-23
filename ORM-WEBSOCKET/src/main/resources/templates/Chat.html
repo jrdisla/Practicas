@@ -111,6 +111,9 @@
                     $('#message').attr('disabled', 'disabled');
                     $('#send').attr('disabled', 'disabled');
                 };
+            } else {
+                $('#log').append('<li><span class="badge badge-important">WebSocket NOT supported in this
+                browser</span></li>');
             }
             return false;
         });

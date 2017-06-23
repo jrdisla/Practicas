@@ -28,7 +28,7 @@ public class Main {
       //      userPrefs.putBoolean("first_run", false);
      //   }
         Spark.staticFileLocation("/public");
-        new manejadorTemplate().startApp();
+       manejadorTemplate.getInstance().startApp();
 
         //  }
     }

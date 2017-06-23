@@ -27,9 +27,6 @@ public class DbHandler<T> {
 
     public EntityManager getEntityManager() { return emf.createEntityManager(); }
 
-
-
-
     public boolean insertIntoDatabase(T entity) throws Exception {
         boolean success = false;
         EntityManager em = getEntityManager();

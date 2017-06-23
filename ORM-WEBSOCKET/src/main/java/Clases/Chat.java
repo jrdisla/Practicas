@@ -18,18 +18,11 @@ import static j2html.TagCreator.*;
 public class Chat {
 
 
-    public   static Map<Session, String> userUsernameMap = new ConcurrentHashMap<>();
+    public  static Map<Session, String> userUsernameMap = new ConcurrentHashMap<>();
     public static List<Users_Chat> users = new ArrayList<>();
     public  static int nextUserNumber = 0; //Assign to username for next connecting user
 
 
-    private static String createHtmlMessageFromSender(String sender, String message) {
-        return article(
-            b(sender + " says:"),
-            span(attrs(".timestamp"), new SimpleDateFormat("HH:mm:ss").format(new Date())),
-            p(message)
-        ).render();
-    }
     public static void enviarMensajeAClientesConectados(String mensaje,  String username){
         for(Users_Chat sesionConectada : users){
             try {

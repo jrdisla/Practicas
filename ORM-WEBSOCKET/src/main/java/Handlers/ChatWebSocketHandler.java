@@ -2,6 +2,7 @@ package Handlers;
 
 import Clases.Chat;
 import Clases.Users_Chat;
+import Clases.manejadorTemplate;
 import org.eclipse.jetty.websocket.api.*;
 import org.eclipse.jetty.websocket.api.annotations.*;
 
@@ -33,13 +34,14 @@ public class ChatWebSocketHandler {
     @OnWebSocketMessage
     public void onMessage(Session user, String mensaje) throws IOException {
         String username =  Chat.userUsernameMap.get(user);
+        String name = manejadorTemplate.getInstance().name;
         if(!username.equalsIgnoreCase("User1")){
-        Chat.enviarMensajeAAdmin(mensaje + " " + username);
+        Chat.enviarMensajeAAdmin("El Usuario: " + name+ " Dice: --- " +  mensaje + " " + " --- Es el usuario: "+username + " Del Chat");
         }else
         {
 
             String username_send = mensaje.substring(0,5);
-            Chat.enviarMensajeAClientesConectados(mensaje,username_send);
+            Chat.enviarMensajeAClientesConectados( "Admin dice: " +mensaje,username_send);
         }
     }
 
