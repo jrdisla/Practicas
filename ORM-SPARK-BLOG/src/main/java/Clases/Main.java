@@ -22,7 +22,7 @@ public class Main {
                   User firstUser = new User("admin", "admin", "admin", true, true);
                   UserHandler userHandler = UserHandler.getInstance();
                   userHandler.insertIntoDatabase(firstUser);
-                    userPrefs.putBoolean("first_run", false);
+            userPrefs.putBoolean("first_run", false);
         }
 
         Spark.staticFileLocation("/public");
