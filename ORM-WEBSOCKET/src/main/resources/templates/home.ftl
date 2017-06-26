@@ -33,7 +33,7 @@
 
 </head>
 
-<body>
+<body id = "ola">
 
 
 <!-- Navigation -->
@@ -84,8 +84,7 @@
 <!-- Main Content -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" >
             ${code}
         </div>
     </div>
@@ -153,11 +152,8 @@
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <li><a href="/home/1/">1</a></li>
-        <li><a href="/home/2/">2</a></li>
-        <li><a href="/home/3/">3</a></li>
-        <li><a href="/home/4/">4</a></li>
-        <li><a href="/home/5/">5</a></li>
+        <button onclick="myX()" type="submit" class="btn btn-primary"><span class="badge">${page+1}</span>Next</button>
+        <button onclick="myXback()" type="submit" class="btn btn-primary"><span class="badge">${page-1}</span>Back</button>
         <li>
             <a href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
@@ -165,6 +161,28 @@
         </li>
     </ul>
 </nav>
+
+
+
+<script>
+    function myX() {
+     $.get("/homePage/",function (data) {
+            $("#ola").html(data)
+        })
+
+    }
+</script>
+
+<script>
+    function myXback() {
+        $.get("/homePageBack/",function (data) {
+            $("#ola").html(data)
+        })
+
+    }
+</script>
+
+
 <!-- Footer -->
 <#include  "./footer.ftl">
 

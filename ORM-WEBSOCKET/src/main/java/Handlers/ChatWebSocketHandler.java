@@ -39,9 +39,9 @@ public class ChatWebSocketHandler {
         Chat.enviarMensajeAAdmin("El Usuario: " + name+ " Dice: --- " +  mensaje + " " + " --- Es el usuario: "+username + " Del Chat");
         }else
         {
-
-            String username_send = mensaje.substring(0,5);
-            Chat.enviarMensajeAClientesConectados( "Admin dice: " +mensaje,username_send);
+            String username_p = mensaje.substring(0,5);
+            System.out.println(mensaje);
+            Chat.enviarMensajeAClientesConectados( "Admin dice: " +mensaje,username_p);
         }
     }
 
