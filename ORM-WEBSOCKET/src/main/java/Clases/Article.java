@@ -34,7 +34,6 @@ public class Article implements Serializable{
         public static String pag = "Article.findArticlesPag";
         public static String tag = "Article.ByTag";
 
-
         @Id
         @GeneratedValue
         @Expose

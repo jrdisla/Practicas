@@ -85,6 +85,22 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" >
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <button onclick="myX()" type="submit" class="btn btn-primary"><span class="badge">${page+1}</span>Next</button>
+                    <button onclick="myXback()" type="submit" class="btn btn-primary"><span class="badge">${page-1}</span>Back</button>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
             ${code}
         </div>
     </div>
@@ -92,8 +108,8 @@
 
 
 </div>
-<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-    <ul class="nav navbar-nav">
+    <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
         <li class="hidden">
             <a href="#page-top"></a>
         </li>
@@ -145,22 +161,7 @@
     </ul>
 </div>
 <hr>
-<nav aria-label="Page navigation">
-    <ul class="pagination">
-        <li>
-            <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <button onclick="myX()" type="submit" class="btn btn-primary"><span class="badge">${page+1}</span>Next</button>
-        <button onclick="myXback()" type="submit" class="btn btn-primary"><span class="badge">${page-1}</span>Back</button>
-        <li>
-            <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+
 
 
 
