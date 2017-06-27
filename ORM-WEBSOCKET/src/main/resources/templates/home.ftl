@@ -17,7 +17,7 @@
     <link href="/css/grayscale.min.css" rel="stylesheet">
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <link href="css/clean-blog.min.css" rel="stylesheet">
+    <
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Spark Blog ORM</title>
@@ -33,7 +33,7 @@
 
 </head>
 
-<body id = "ola">
+<body>
 
 
 <!-- Navigation -->
@@ -92,8 +92,8 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <button onclick="myX()" type="submit" class="btn btn-primary"><span class="badge">${page+1}</span>Next</button>
-                    <button onclick="myXback()" type="submit" class="btn btn-primary"><span class="badge">${page-1}</span>Back</button>
+                    <button onclick="myX()" type="submit" class="btn btn-primary">Next</button>
+                    <button onclick="myXback()" type="submit" class="btn btn-primary">Back</button>
                     <li>
                         <a href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
@@ -101,7 +101,21 @@
                     </li>
                 </ul>
             </nav>
-            ${code}
+            <div id = "ola">
+        <#if first = true>
+            <#list listArti as item>
+                <div class="post-preview">
+                    <h2 class="post-title">  ${item.title}  </h2>
+                    <h5> Posted by:  ${item.getAuthor().username} </h5>
+                    <h5><span class="glyphicon glyphicon-time"> </span> ${item.date}  </h5>
+                    <h5><span class="glyphicon glyphicon-tags"></span> ${item.getStringTags()} </h5>
+                    <a href="/article/${item.id}/"> ${item.title}</a>
+                    <p>  ${item.body?substring(0,70)} </p>
+                    <br><br>
+                </div>
+            </#list>
+        </#if>
+            </div>
         </div>
     </div>
 

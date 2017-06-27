@@ -22,7 +22,7 @@ public class manejadorTemplate {
     int id_local_article =0;
     int comment_id_global = 0;
     public String name = "";
-
+    boolean first = true;
 
     private static manejadorTemplate instance = null;
     protected manejadorTemplate() {}
@@ -167,6 +167,8 @@ public class manejadorTemplate {
             attributes.put("code",html);
             User user = request.session().attribute("username");
             attributes.put("user",user);
+            attributes.put("listArti",articles);
+            attributes.put("first",first);
             attributes.put("page",page);
             return new ModelAndView(attributes, "home.ftl");
         }, engine);
@@ -289,8 +291,8 @@ public class manejadorTemplate {
             }
         });
         get("/homePage/", (request, response) -> {
+            first = false;
             page++;
-
             int offset = ((page-1)*5);
             ArticleHandler articleHandler = ArticleHandler.getInstance();
             List<Article> articles = articleHandler.pagination(5,offset);
@@ -299,22 +301,23 @@ public class manejadorTemplate {
             attributes.put("Titulo", "Start Page");
             attributes.put("code",html);
             User user = request.session().attribute("username");
+            attributes.put("listArti",articles);
             attributes.put("user",user);
             attributes.put("page",page); // eso no se usa y como sabes quepagina va
-            return new ModelAndView(attributes, "home.ftl");
+            return new ModelAndView(attributes, "mostrar_arti.ftl");
         }, engine);
     }
     private void paginationBack (FreeMarkerEngine engine)
     {
 
         get("/homePageBack/", (request, response) -> {
-            System.out.println("llegolol llego llego llego llego allllllllllllllllllll");
+
             // page = Integer.parseInt(request.params(":id"));
             System.out.println("EL PAGE ES: "+page);
             if(page>1) {
                 page--;
             }
-            System.out.println("EL PAGE ES: "+page);
+            first = false;
             int offset = ((page-1)*5);
             ArticleHandler articleHandler = ArticleHandler.getInstance();
             List<Article> articles = articleHandler.pagination(5,offset);
@@ -324,8 +327,9 @@ public class manejadorTemplate {
             attributes.put("code",html);
             User user = request.session().attribute("username");
             attributes.put("user",user);
+            attributes.put("listArti",articles);
             attributes.put("page",page); // eso no se usa y como sabes quepagina va
-            return new ModelAndView(attributes, "home.ftl");
+            return new ModelAndView(attributes, "mostrar_arti.ftl");
         }, engine);
     }
     private void List_One_article (FreeMarkerEngine engine)
@@ -505,7 +509,6 @@ public class manejadorTemplate {
             return null;
         }, engine);
     }
-
     private void listArtyby (FreeMarkerEngine engine)
     {
         get("/listArtiBy/", (request, response) -> {
