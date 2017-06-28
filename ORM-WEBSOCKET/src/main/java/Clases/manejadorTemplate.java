@@ -110,7 +110,9 @@ public class manejadorTemplate {
             }
         });
         get("/home/", (request, response) -> {
+            page=1;
             int offset = ((page-1)*5);
+            first = true;
             ArticleHandler articleHandler = ArticleHandler.getInstance();
             List<Article> articles = articleHandler.pagination(5,offset);
             String html = autoMaticHtml_List_Arti(articles);
@@ -120,6 +122,8 @@ public class manejadorTemplate {
             User user = request.session().attribute("username");
             attributes.put("user",user);
             attributes.put("page",page);
+            attributes.put("first",first);
+            attributes.put("listArti",articles);
             return new ModelAndView(attributes, "home.ftl");
         }, engine);
     }
