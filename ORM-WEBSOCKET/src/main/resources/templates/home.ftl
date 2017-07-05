@@ -112,6 +112,8 @@
                     <a href="/article/${item.id}/"> ${item.title}</a>
                     <p>  ${item.body?substring(0,70)} </p>
                     <br><br>
+
+
                 </div>
             </#list>
         </#if>
